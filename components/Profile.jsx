@@ -1,4 +1,4 @@
-import PromptCard from './PromptCard'
+import PromptCard from './PromptCard';
 
 const Profile = ({ name, desc, data, handleEdit, handleDelete }) => {
   return (
@@ -12,9 +12,9 @@ const Profile = ({ name, desc, data, handleEdit, handleDelete }) => {
         {data.map((post) => (
           <PromptCard
             key={post._id}
-            post={post}
-            handleEdit={() => handleEdit && handleEdit(post)}
-            handleDelete={() => handleDelete && handleDelete(post)}
+            post={post} // Pasar los datos del post correctamente
+            handleEdit={handleEdit}
+            handleDelete={handleDelete}
           />
         ))}
       </div>

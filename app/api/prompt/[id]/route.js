@@ -1,6 +1,9 @@
 import { connectToDB } from "@utils/database";
 import Prompt from "@models/prompt";
 
+
+
+// get para poder leer la prompt 
 export const GET = async (params) => {
   try {
     await connectToDB();
@@ -20,6 +23,8 @@ export const GET = async (params) => {
 }
 
 
+
+// patch para poder actualizar la prompt
 export const PATCH = async (request, {params}) => {
   const { prompt, tag } = await request.json()
 
@@ -35,6 +40,21 @@ export const PATCH = async (request, {params}) => {
       status: 200})
     } catch (error) {
       return new Response('failed to update prompt', {
+        status: 500,
+      });
+    }
+  }
+
+
+
+// delete para poder borrar la prompt
+export const DELETE = async (request, {params}) => {
+  try {
+    await connectToDB()
+   await Prompt.findByIdAndRemove(params.id)
+   return new Response ("Prompt deleted Successfully")
+    } catch (error) {
+      return new Response('failed to delete prompt', {
         status: 500,
       });
     }
